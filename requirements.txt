@@ -4,3 +4,4 @@ matplotlib
 sklearn
 django
 imageio
+gunicorn
