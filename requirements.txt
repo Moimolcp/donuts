@@ -5,3 +5,4 @@ sklearn
 django
 imageio
 gunicorn
+whitenoise
