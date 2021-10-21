@@ -1,0 +1,27 @@
+
+body{
+	background: #090c1a;
+	color: #E0E0E0;
+}
+
+.card {
+    background: #090c1a;
+    padding: 20px 0;
+    color: #E0E0E0;
+    box-shadow: none;
+}
+
+.btn-primary{
+	display: inline-block;
+	cursor: pointer;
+	border: 1px solid transparent;
+	white-space: nowrap;
+	padding: 6px 12px;
+	font-size: 14px;
+	border-radius: 4px;
+	text-transform: uppercase;
+
+	background: #47a060;
+    background-color: rgb(71, 160, 96);
+	padding: 10px 20px;
+}
