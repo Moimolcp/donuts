@@ -28,11 +28,11 @@ def solve(temp_path,image):
         #np.save('colors',np.array(colors,dtype='object'))
         
         img = draw_game(game,colors,gif=gif)
-        string_image = str('data:image/png;base64,' + str(base64.b64encode(cv2.imencode('.png', img)[1].tostring()).decode("utf-8")))
+        string_image = str('data:image/jpg;base64,' + str(base64.b64encode(cv2.imencode('.jpg', img)[1].tostring()).decode("utf-8")))
         encoded.append(string_image) 
         for step in steps:
             img = draw_game(step,colors,gif=gif)
-            string_image = str('data:image/png;base64,' + str(base64.b64encode(cv2.imencode('.png', img)[1].tostring()).decode("utf-8")))
+            string_image = str('data:image/jpg;base64,' + str(base64.b64encode(cv2.imencode('.jpg', img)[1].tostring()).decode("utf-8")))
             encoded.append(string_image) 
         #print(len(steps))
         #print("FINISHHHHHHH")
@@ -201,6 +201,7 @@ def draw_game(game,colors,pp=None,gif=None):
     if pp : pp.savefig()
     if gif : gif.append_data(blank_image)
     #plt.show()
+    blank_image = cv2.cvtColor(blank_image, cv2.COLOR_BGR2RGB)
     return blank_image
 
 
