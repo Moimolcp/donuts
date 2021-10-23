@@ -16,26 +16,33 @@ def solve(temp_path,image):
     game,colors = prep(temp_path,image)
 
     if not game:
-        return 'data:image/png;base64,ERROR'
+        return ['data:image/png;base64,ERROR']
 
+
+    img = ""
+    encoded = []
     with imageio.get_writer(temp_path+'/gif.gif', mode='I', fps=2) as gif:
         steps = dfs([],game)
-        
+
         #np.save('res',np.array(steps,dtype='object'))
         #np.save('colors',np.array(colors,dtype='object'))
         
-        draw_game(game,colors,gif=gif)
+        img = draw_game(game,colors,gif=gif)
+        string_image = str('data:image/png;base64,' + str(base64.b64encode(cv2.imencode('.png', img)[1].tostring()).decode("utf-8")))
+        encoded.append(string_image) 
         for step in steps:
-            draw_game(step,colors,gif=gif)
+            img = draw_game(step,colors,gif=gif)
+            string_image = str('data:image/png;base64,' + str(base64.b64encode(cv2.imencode('.png', img)[1].tostring()).decode("utf-8")))
+            encoded.append(string_image) 
         #print(len(steps))
         #print("FINISHHHHHHH")
-    file = open(temp_path+"/gif.gif", "rb")    
-    data = open(temp_path+"/gif.gif", "rb").read()
-    encoded = base64.b64encode(data)
-    file.close()
+    #file = open(temp_path+"/gif.gif", "rb")    
+    #data = open(temp_path+"/gif.gif", "rb").read()
+    
+    #file.close()
     shutil.rmtree(temp_path)
     #print(encoded)
-    return  'data:image/png;base64,' + str(encoded.decode("utf-8"))
+    return encoded
 
 
 def prep(temp_path,image):
@@ -194,6 +201,7 @@ def draw_game(game,colors,pp=None,gif=None):
     if pp : pp.savefig()
     if gif : gif.append_data(blank_image)
     #plt.show()
+    return blank_image
 
 
 def copy_game(game):

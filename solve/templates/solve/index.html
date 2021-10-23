@@ -35,19 +35,13 @@
           </button>
         </div>
       </form>
-      
-      <div class="text-center" style="font-size: 14px">
-        <div id="progress-bar-message">
-        </div>
-      </div>
 
-      <div class='progress-wrapper' style="padding-top: 10px;">
-        <div id='progress-bar' class='progress-bar progress-bar-striped' role='progressbar' style="height:30px; width: 0%">&nbsp;</div>
-      </div>
       {% if solved %}
-         <div  style="display: flex;  ">
-             <img style="margin: auto" id="result" src={{solved}}></img>
-         </div>
+        {% for imagen in solved %}
+          <div  style="display: flex;">
+          <img style="margin: auto;width: 100%;padding-bottom: 20px" id="result" src={{imagen}}></img>
+        </div>
+        {% endfor %}
       {% endif %}
     </div>  
     <script>  
